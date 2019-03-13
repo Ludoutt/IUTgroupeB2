@@ -3,13 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Demo backlog produit{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
     </head>
     <body>
         <div class="site-global">
-            {% block nav %}{% endblock %}
+            {% include 'nav.html.twig' %}
             <div class="page-content">
-                {% block body %}{% endblock %}
+                {% block content %}{% endblock %}
             </div>
         </div>
         {% block javascripts %}{% endblock %}
