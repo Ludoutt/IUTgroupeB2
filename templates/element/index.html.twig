@@ -15,6 +15,7 @@
                 <th>Status</th>
                 <th>Priority</th>
                 <th>Estimation</th>
+                <th>ListeCheck</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                 <td>{{ element.status }}</td>
                 <td>{{ element.priority }}</td>
                 <td>{{ element.estimation }}</td>
+                <td>{{ element.listeCheck }}</td>
                 <td>
                     <a href="{{ path('element_show', {'id': element.id}) }}">show</a>
                     <a href="{{ path('element_edit', {'id': element.id}) }}">edit</a>
@@ -35,7 +37,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="9">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

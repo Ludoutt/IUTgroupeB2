@@ -18,6 +18,7 @@ class ElementType extends AbstractType
             ->add('status')
             ->add('priority')
             ->add('estimation')
+            ->add('listeCheck')
             ->add('backlog')
         ;
     }
