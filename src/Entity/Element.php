@@ -52,6 +52,16 @@ class Element
      */
     private $backlog;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $listeCheck;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $criteresTests;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +147,30 @@ class Element
     public function setBacklog(?Backlog $backlog): self
     {
         $this->backlog = $backlog;
+
+        return $this;
+    }
+
+    public function getListeCheck(): ?string
+    {
+        return $this->listeCheck;
+    }
+
+    public function setListeCheck(?string $listeCheck): self
+    {
+        $this->listeCheck = $listeCheck;
+
+        return $this;
+    }
+
+    public function getCriteresTests(): ?string
+    {
+        return $this->criteresTests;
+    }
+
+    public function setCriteresTests(?string $criteresTests): self
+    {
+        $this->criteresTests = $criteresTests;
 
         return $this;
     }
