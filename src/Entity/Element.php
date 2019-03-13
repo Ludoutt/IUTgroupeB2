@@ -57,6 +57,11 @@ class Element
      */
     private $listeCheck;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $criteresTests;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,18 @@ class Element
     public function setListeCheck(?string $listeCheck): self
     {
         $this->listeCheck = $listeCheck;
+
+        return $this;
+    }
+
+    public function getCriteresTests(): ?string
+    {
+        return $this->criteresTests;
+    }
+
+    public function setCriteresTests(?string $criteresTests): self
+    {
+        $this->criteresTests = $criteresTests;
 
         return $this;
     }
