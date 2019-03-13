@@ -1,0 +1,9 @@
+.site-global{
+    height: 100vh;
+}
+nav{
+    width: 250px;
+    background: #000;
+    height: 100%;
+    color: #fff;
+}

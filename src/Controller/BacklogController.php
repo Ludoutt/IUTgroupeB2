@@ -53,7 +53,7 @@ class BacklogController extends AbstractController
      */
     public function show(Backlog $backlog): Response
     {
-        return $this->render('backlog/show.html.twig', [
+        return $this->render('home.html.twig', [
             'backlog' => $backlog,
         ]);
     }
