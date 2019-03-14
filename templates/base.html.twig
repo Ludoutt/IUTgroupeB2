@@ -2,11 +2,18 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Demo backlog produit{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="site-global">
+            {% include 'nav.html.twig' %}
+            <div class="page-content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

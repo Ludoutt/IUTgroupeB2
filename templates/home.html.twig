@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <h1>Backlog produit : {{ backlog.title }}</h1>
+    <div class="backlog">
+        <div class="backlog-col draft">
+            <div class="backlog-col-inner">
+                <h2>A accepter</h2>
+                <div class="tasks">
+                    {% for task in accepter %}
+                    <div class="tasks-item">
+                        <h3>{{ task.title }}</h3>
+                        <p>{{ task.description }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+        <div class="backlog-col attente">
+            <div class="backlog-col-inner">
+                <h2>A estimer par l'equipe dev</h2>
+                <div class="tasks">
+                    {% for task in estimer %}
+                        <div class="tasks-item">
+                            <h3>{{ task.title }}</h3>
+                            <p>{{ task.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="backlog-col valider">
+            <div class="backlog-col-inner">
+                <h2>A planifier</h2>
+                <div class="tasks">
+                    {% for task in planifier %}
+                        <div class="tasks-item">
+                            <h3>{{ task.title }}</h3>
+                            <p>{{ task.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

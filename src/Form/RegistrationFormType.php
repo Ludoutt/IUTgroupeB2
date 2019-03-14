@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,8 +15,19 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $roles = $this->getParent('security.role_hierarchy.roles');
         $builder
             ->add('email')
+            ->add('roles', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'choices' => [
+                    'Product Owner' => 'PRODUCT_OWNER',
+                    'User / Scrum Master' => 'USER',
+                    'Developer' => 'DEVELOPER',
+                ], 'multiple' => true,
+            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
