@@ -42,9 +42,11 @@
         </tbody>
     </table>
 
-    <a href="{{ path('element_index') }}">back to list</a>
+    <a href="{{ path('backlog_show', {'id':element.backlog.id}) }}">Retour au backlog</a>
 
+    {% if is_granted('ROLE_PRODUCT_OWNER') %}
     <a href="{{ path('element_edit', {'id': element.id}) }}">edit</a>
-
     {{ include('element/_delete_form.html.twig') }}
+    {% endif %}
+
 {% endblock %}

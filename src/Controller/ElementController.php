@@ -35,11 +35,17 @@ class ElementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $element->setCreatedBy($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($element);
             $entityManager->flush();
 
-            return $this->redirectToRoute('element_index');
+            $this->addFlash(
+                'conf',
+                'Elément créé'
+            );
+
+            return $this->redirectToRoute('backlog_show', ['id' => $element->getBacklog()->getId()]);
         }
 
         return $this->render('element/new.html.twig', [
@@ -67,10 +73,25 @@ class ElementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $save = $form->getData();
+            if (!empty($save->getEstimation()) && $save->getStatus() != 2)
+            {
+                $save->setStatus(2);
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($save);
+            $em->flush();
+
+            $this->addFlash(
+                'conf',
+                'Elément mis à jour'
+            );
+
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('element_index', [
-                'id' => $element->getId(),
+            return $this->redirectToRoute('backlog_show', [
+                'id' => $element->getBacklog()->getId(),
             ]);
         }
 

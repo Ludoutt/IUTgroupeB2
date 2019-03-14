@@ -17,7 +17,7 @@ class ElementType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('type')
-            ->add('status')
+//            ->add('status')
             ->add('priority')
             ->add('estimation')
             ->add('listeCheck')

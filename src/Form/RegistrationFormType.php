@@ -18,14 +18,15 @@ class RegistrationFormType extends AbstractType
         $roles = $this->getParent('security.role_hierarchy.roles');
         $builder
             ->add('email')
+            ->add('name')
             ->add('roles', ChoiceType::class, [
                 'attr' => [
                     'class' => 'form-control',
                 ],
                 'choices' => [
-                    'Product Owner' => 'PRODUCT_OWNER',
-                    'User / Scrum Master' => 'USER',
-                    'Developer' => 'DEVELOPER',
+                    'PRODUCT_OWNER' => 'ROLE_PRODUCT_OWNER',
+                    'USER' => 'ROLE_USER',
+                    'DEVELOPER' => 'ROLE_DEV',
                 ], 'multiple' => true,
             ])
             ->add('plainPassword', PasswordType::class, [

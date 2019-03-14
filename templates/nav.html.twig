@@ -1,7 +1,18 @@
 <nav>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div class="nav-account">
+        <p>Bienvenue {{ app.user.name }}</p>
+    </div>
+    {% endif %}
     <ul>
-        <li><a href="#">Backlog</a></li>
-        <li><a href="#">Sprint actif</a></li>
+        <li><a href="{{ path('backlog_index') }}">Backlogs</a></li>
+        <li><a href="#">Sprints</a></li>
         <li><a href="#">Charts</a></li>
     </ul>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ path('app_logout') }}">Se déconnecter</a>
+    {% else %}
+    <a href="{{ path('app_login') }}">Se connecter</a>
+    <a href="{{ path('app_register') }}">S'inscrire</a>
+    {% endif %}
 </nav>

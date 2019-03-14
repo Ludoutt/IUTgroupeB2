@@ -1,6 +1,11 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
+    {% for message in app.flashes('conf') %}
+        <div class="flash-message flash-conf">
+            {{ message }}
+        </div>
+    {% endfor %}
     <h1>Backlog produit : {{ backlog.title }}</h1>
     <div class="backlog">
         <div class="backlog-col draft">
@@ -11,22 +16,26 @@
                     <div class="tasks-item">
                         <div class="tasks-item-title">
                             <div class="raji-row">
-                                <p class="tasks-item-author">Je suis l'auteur</p>
-                                <p class="tasks-item-type">{{ task.type }}</p>
+                                <h3>{{ task.title }}</h3>
+                                <a href="{{ path("element_edit", {'id':task.id}) }}" class="tasks-item-edit">
+                                    {% if is_granted('ROLE_PRODUCT_OWNER') %}<img src="{{ asset('images/edit.svg') }}"/>{% endif %}
+                                </a>
                             </div>
                             <div class="raji-row">
-                                <h3>{{ task.title }}</h3>
-                                <a href="/element/{{ task.id }}/edit" class="tasks-item-edit"><img src="{{ asset('images/edit.svg') }}"/></a>
+                                <p class="tasks-item-author">{{ task.createdBy.name }}</p>
+                                <p class="tasks-item-type">{{ task.type }}</p>
                             </div>
                         </div>
                         <p class="tasks-item-desc">{{ task.description }}</p>
                         <div class="tasks-item-infos">
-                            <p>Priority : {{ task.priority }}</p>
+                            <p>Priorité : {{ task.priority }}</p>
                             <p>Estimation : {{ task.estimation }}</p>
                         </div>
                     </div>
                     {% endfor %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                     <a href="/element/new" class="tasks-add">+</a>
+                    {% endif %}
                 </div>
             </div>
 
@@ -39,17 +48,19 @@
                         <div class="tasks-item">
                             <div class="tasks-item-title">
                                 <div class="raji-row">
-                                    <p class="tasks-item-author">Je suis l'auteur</p>
-                                    <p class="tasks-item-type">{{ task.type }}</p>
+                                    <h3>{{ task.title }}</h3>
+                                    <a href="{{ path("element_edit", {'id':task.id}) }}" class="tasks-item-edit">
+                                        {% if is_granted('ROLE_PRODUCT_OWNER') or is_granted('ROLE_DEV') %}<img src="{{ asset('images/edit.svg') }}"/>{% endif %}
+                                    </a>
                                 </div>
                                 <div class="raji-row">
-                                    <h3>{{ task.title }}</h3>
-                                    <a href="#" class="tasks-item-edit"><img src="{{ asset('images/edit.svg') }}"/></a>
+                                    <p class="tasks-item-author">{{ task.createdBy.name }}</p>
+                                    <p class="tasks-item-type">{{ task.type }}</p>
                                 </div>
                             </div>
                             <p class="tasks-item-desc">{{ task.description }}</p>
                             <div class="tasks-item-infos">
-                                <p>Priority : {{ task.priority }}</p>
+                                <p>Priorité : {{ task.priority }}</p>
                                 <p>Estimation : {{ task.estimation }}</p>
                             </div>
                         </div>
@@ -65,17 +76,19 @@
                         <div class="tasks-item">
                             <div class="tasks-item-title">
                                 <div class="raji-row">
-                                    <p class="tasks-item-author">Je suis l'auteur</p>
-                                    <p class="tasks-item-type">{{ task.type }}</p>
-                                </div>
-                                <div class="raji-row">
                                     <h3>{{ task.title }}</h3>
-                                    <a href="#" class="tasks-item-edit"><img src="{{ asset('images/edit.svg') }}"/></a>
+                                    <a href="{{ path("element_edit", {'id':task.id}) }}" class="tasks-item-edit">
+                                        {% if is_granted('ROLE_PRODUCT_OWNER') %}<img src="{{ asset('images/edit.svg') }}"/>{% endif %}
+                                    </a>
+                                    </div>
+                                <div class="raji-row">
+                                    <p class="tasks-item-author">{{ task.createdBy.name }}</p>
+                                    <p class="tasks-item-type">{{ task.type }}</p>
                                 </div>
                             </div>
                             <p class="tasks-item-desc">{{ task.description }}</p>
                             <div class="tasks-item-infos">
-                                <p>Priority : {{ task.priority }}</p>
+                                <p>Priorité : {{ task.priority }}</p>
                                 <p>Estimation : {{ task.estimation }}</p>
                             </div>
                         </div>
@@ -84,4 +97,12 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+            crossorigin="anonymous"></script>
+    <script src="{{ asset('js/flash.js') }}"></script>
 {% endblock %}

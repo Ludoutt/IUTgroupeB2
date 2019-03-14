@@ -192,4 +192,9 @@ class Element
 
         return $this;
     }
+
+    public function __construct()
+    {
+        $this->status = 0;
+    }
 }

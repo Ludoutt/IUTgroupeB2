@@ -19,6 +19,13 @@ security:
             guard:
                 authenticators:
                     - App\Security\LoginAuthenticator
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                default_target_path: backlog_index
+            logout:
+                path:   app_logout
+                target: /
 
             # activate different ways to authenticate
 
