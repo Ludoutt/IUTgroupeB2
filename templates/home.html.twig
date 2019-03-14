@@ -9,8 +9,17 @@
                 <div class="tasks">
                     {% for task in accepter %}
                     <div class="tasks-item">
-                        <h3>{{ task.title }}</h3>
-                        <p>{{ task.description }}</p>
+                        <div class="tasks-item-title">
+                            <p class="tasks-item-author">Je suis l'auteur</p>
+                            <h3>Title</h3>
+                            <a href="#" class="tasks-item-edit">z</a>
+                            <p class="tasks-item-type">User Story</p>
+                        </div>
+                        <p class="tasks-item-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                        <div class="tasks-item-infos">
+                            <p>Priority : 3</p>
+                            <p>Estimation : 5</p>
+                        </div>
                     </div>
                     {% endfor %}
                 </div>

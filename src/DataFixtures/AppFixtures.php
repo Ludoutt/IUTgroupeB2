@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
 //        $element->setEstimation("");
 //        $element->setListeCheck("");
 //        $element->setCriteresTests("");
-        $element->setBacklog($backlog);
+        $element->setBacklog($backlog);;
         $manager->persist($element);
 
         $manager->flush();
