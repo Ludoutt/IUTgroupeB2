@@ -7,10 +7,12 @@
             <div class="backlog-col-inner">
                 <h2>A accepter</h2>
                 <div class="tasks">
+                    {% for task in accepter %}
                     <div class="tasks-item">
-                        <h3>Title</h3>
-                        <p>Lorem ipsum dolor sit amet</p>
+                        <h3>{{ task.title }}</h3>
+                        <p>{{ task.description }}</p>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -19,7 +21,12 @@
             <div class="backlog-col-inner">
                 <h2>A estimer par l'equipe dev</h2>
                 <div class="tasks">
-
+                    {% for task in estimer %}
+                        <div class="tasks-item">
+                            <h3>{{ task.title }}</h3>
+                            <p>{{ task.description }}</p>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -27,7 +34,12 @@
             <div class="backlog-col-inner">
                 <h2>A planifier</h2>
                 <div class="tasks">
-
+                    {% for task in planifier %}
+                        <div class="tasks-item">
+                            <h3>{{ task.title }}</h3>
+                            <p>{{ task.description }}</p>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

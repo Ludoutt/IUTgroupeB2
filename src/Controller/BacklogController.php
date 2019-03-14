@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Backlog;
+use App\Entity\Element;
 use App\Form\BacklogType;
 use App\Repository\BacklogRepository;
+use App\Repository\ElementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,10 +53,17 @@ class BacklogController extends AbstractController
     /**
      * @Route("/{id}", name="backlog_show", methods={"GET"})
      */
-    public function show(Backlog $backlog): Response
+    public function show(Backlog $backlog, ElementRepository $elementRepository): Response
     {
+        $accepter = $elementRepository->findBy(["status" => 0]); // les propositions d'éléments (colonne à vérifier)
+        $estimer = $elementRepository->findBy(["status" => 1]); // les éléments acceptés par le PO (colonne en attente d'estimation par les dév)
+        $planifier = $elementRepository->findBy(["status" => 2]); // les éléments estimés par les dév, donc en attente de planif par le PO
+
         return $this->render('home.html.twig', [
             'backlog' => $backlog,
+            'accepter' => $accepter,
+            'estimer' => $estimer,
+            'planifier' => $planifier
         ]);
     }
 
