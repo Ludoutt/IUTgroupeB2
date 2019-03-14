@@ -16,21 +16,29 @@ class RegistrationController extends AbstractController
 {
     /**
      * @Route("/register", name="app_register")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param GuardAuthenticatorHandler $guardHandler
+     * @param LoginAuthenticator $authenticator
+     * @return Response
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $authenticator): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        $roles = $this->getParameter('security.role_hierarchy.roles');
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+            /** @var TYPE_NAME $passwordEncoder */
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+            $form->get('plainPassword')->getData()
                 )
             );
+            $roles = $form->get('roles')->getData();
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
