@@ -10,18 +10,23 @@
                     {% for task in accepter %}
                     <div class="tasks-item">
                         <div class="tasks-item-title">
-                            <p class="tasks-item-author">Je suis l'auteur</p>
-                            <h3>Title</h3>
-                            <a href="#" class="tasks-item-edit">z</a>
-                            <p class="tasks-item-type">User Story</p>
+                            <div class="raji-row">
+                                <p class="tasks-item-author">Je suis l'auteur</p>
+                                <p class="tasks-item-type">{{ task.type }}</p>
+                            </div>
+                            <div class="raji-row">
+                                <h3>{{ task.title }}</h3>
+                                <a href="/element/{{ task.id }}/edit" class="tasks-item-edit"><img src="{{ asset('images/edit.svg') }}"/></a>
+                            </div>
                         </div>
-                        <p class="tasks-item-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                        <p class="tasks-item-desc">{{ task.description }}</p>
                         <div class="tasks-item-infos">
-                            <p>Priority : 3</p>
-                            <p>Estimation : 5</p>
+                            <p>Priority : {{ task.priority }}</p>
+                            <p>Estimation : {{ task.estimation }}</p>
                         </div>
                     </div>
                     {% endfor %}
+                    <a href="/element/new" class="tasks-add">+</a>
                 </div>
             </div>
 
@@ -32,8 +37,21 @@
                 <div class="tasks">
                     {% for task in estimer %}
                         <div class="tasks-item">
-                            <h3>{{ task.title }}</h3>
-                            <p>{{ task.description }}</p>
+                            <div class="tasks-item-title">
+                                <div class="raji-row">
+                                    <p class="tasks-item-author">Je suis l'auteur</p>
+                                    <p class="tasks-item-type">{{ task.type }}</p>
+                                </div>
+                                <div class="raji-row">
+                                    <h3>{{ task.title }}</h3>
+                                    <a href="#" class="tasks-item-edit"><img src="{{ asset('images/edit.svg') }}"/></a>
+                                </div>
+                            </div>
+                            <p class="tasks-item-desc">{{ task.description }}</p>
+                            <div class="tasks-item-infos">
+                                <p>Priority : {{ task.priority }}</p>
+                                <p>Estimation : {{ task.estimation }}</p>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -45,8 +63,21 @@
                 <div class="tasks">
                     {% for task in planifier %}
                         <div class="tasks-item">
-                            <h3>{{ task.title }}</h3>
-                            <p>{{ task.description }}</p>
+                            <div class="tasks-item-title">
+                                <div class="raji-row">
+                                    <p class="tasks-item-author">Je suis l'auteur</p>
+                                    <p class="tasks-item-type">{{ task.type }}</p>
+                                </div>
+                                <div class="raji-row">
+                                    <h3>{{ task.title }}</h3>
+                                    <a href="#" class="tasks-item-edit"><img src="{{ asset('images/edit.svg') }}"/></a>
+                                </div>
+                            </div>
+                            <p class="tasks-item-desc">{{ task.description }}</p>
+                            <div class="tasks-item-infos">
+                                <p>Priority : {{ task.priority }}</p>
+                                <p>Estimation : {{ task.estimation }}</p>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
