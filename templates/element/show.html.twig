@@ -2,7 +2,7 @@
 
 {% block title %}Element{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>Element</h1>
 
     <table class="table">
@@ -39,12 +39,22 @@
                 <th>ListeCheck</th>
                 <td>{{ element.listeCheck }}</td>
             </tr>
+            <tr>
+                <th>CriteresTests</th>
+                <td>{{ element.criteresTests }}</td>
+            </tr>
+            <tr>
+                <th>Dans le Backlog :</th>
+                <td>{{ element.backlog.title }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('element_index') }}">back to list</a>
+    <a href="{{ path('backlog_show', {'id':element.backlog.id}) }}">Retour au backlog</a>
 
+    {% if is_granted('ROLE_PRODUCT_OWNER') %}
     <a href="{{ path('element_edit', {'id': element.id}) }}">edit</a>
-
     {{ include('element/_delete_form.html.twig') }}
+    {% endif %}
+
 {% endblock %}

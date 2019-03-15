@@ -1,4 +1,19 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.type) }}
+
+    {% if is_granted('ROLE_PRODUCT_OWNER') %}
+    {{ form_row(form.priority) }}
+    {% endif %}
+
+    {% if is_granted('ROLE_DEV') %}
+    {{ form_row(form.estimation) }}
+    {% endif %}
+
+    {{ form_row(form.listeCheck) }}
+    {{ form_row(form.criteresTests) }}
+    {{ form_row(form.backlog) }}
+    {{ form_row(form._token) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{{ form_end(form, {'render_rest': false}) }}

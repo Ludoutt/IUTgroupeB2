@@ -57,6 +57,17 @@ class Element
      */
     private $listeCheck;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $criteresTests;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="elements")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $createdBy;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -156,5 +167,34 @@ class Element
         $this->listeCheck = $listeCheck;
 
         return $this;
+    }
+
+    public function getCriteresTests(): ?string
+    {
+        return $this->criteresTests;
+    }
+
+    public function setCriteresTests(?string $criteresTests): self
+    {
+        $this->criteresTests = $criteresTests;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): self
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    public function __construct()
+    {
+        $this->status = 0;
     }
 }
