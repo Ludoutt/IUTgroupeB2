@@ -75,7 +75,11 @@ class ElementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $save = $form->getData();
-            if (!empty($save->getEstimation()) && $save->getStatus() != 2)
+            if (!empty($save->getPriority()) && $save->getStatus() == 0)
+            {
+                $save->setStatus(1);
+            }
+            else if (!empty($save->getEstimation()) && $save->getStatus() == 1)
             {
                 $save->setStatus(2);
             }

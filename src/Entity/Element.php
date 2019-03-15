@@ -64,7 +64,7 @@ class Element
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="elements")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $createdBy;
 

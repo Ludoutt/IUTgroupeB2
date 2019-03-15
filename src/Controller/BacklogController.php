@@ -55,9 +55,9 @@ class BacklogController extends AbstractController
      */
     public function show(Backlog $backlog, ElementRepository $elementRepository): Response
     {
-        $accepter = $elementRepository->findBy(["status" => 0]); // les propositions d'éléments (colonne à vérifier)
-        $estimer = $elementRepository->findBy(["status" => 1]); // les éléments acceptés par le PO (colonne en attente d'estimation par les dév)
-        $planifier = $elementRepository->findBy(["status" => 2]); // les éléments estimés par les dév, donc en attente de planif par le PO
+        $accepter = $elementRepository->findBy(["status" => 0], ['priority' => 'DESC']); // les propositions d'éléments (colonne à vérifier)
+        $estimer = $elementRepository->findBy(["status" => 1], ['priority' => 'DESC']); // les éléments acceptés par le PO (colonne en attente d'estimation par les dév)
+        $planifier = $elementRepository->findBy(["status" => 2], ['priority' => 'DESC']); // les éléments estimés par les dév, donc en attente de planif par le PO
 
         return $this->render('home.html.twig', [
             'backlog' => $backlog,
@@ -94,7 +94,7 @@ class BacklogController extends AbstractController
      */
     public function delete(Request $request, Backlog $backlog): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$backlog->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $backlog->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($backlog);
             $entityManager->flush();

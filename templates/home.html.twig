@@ -10,13 +10,13 @@
     <div class="backlog">
         <div class="backlog-col draft">
             <div class="backlog-col-inner">
-                <h2>A accepter</h2>
+                <h2>A accepter </h2>
                 <div class="tasks">
                     {% for task in accepter %}
                     <div class="tasks-item">
                         <div class="tasks-item-title">
                             <div class="raji-row">
-                                <h3>{{ task.title }}</h3>
+                                <h3><a href="{{ path("element_show", {'id':task.id}) }}">{{ task.title }}</a></h3>
                                 <a href="{{ path("element_edit", {'id':task.id}) }}" class="tasks-item-edit">
                                     {% if is_granted('ROLE_PRODUCT_OWNER') %}<img src="{{ asset('images/edit.svg') }}"/>{% endif %}
                                 </a>
@@ -48,7 +48,7 @@
                         <div class="tasks-item">
                             <div class="tasks-item-title">
                                 <div class="raji-row">
-                                    <h3>{{ task.title }}</h3>
+                                    <h3><a href="{{ path("element_show", {'id':task.id}) }}">{{ task.title }}</a></h3>
                                     <a href="{{ path("element_edit", {'id':task.id}) }}" class="tasks-item-edit">
                                         {% if is_granted('ROLE_PRODUCT_OWNER') or is_granted('ROLE_DEV') %}<img src="{{ asset('images/edit.svg') }}"/>{% endif %}
                                     </a>
@@ -76,7 +76,7 @@
                         <div class="tasks-item">
                             <div class="tasks-item-title">
                                 <div class="raji-row">
-                                    <h3>{{ task.title }}</h3>
+                                    <h3><a href="{{ path("element_show", {'id':task.id}) }}">{{ task.title }}</a></h3>
                                     <a href="{{ path("element_edit", {'id':task.id}) }}" class="tasks-item-edit">
                                         {% if is_granted('ROLE_PRODUCT_OWNER') %}<img src="{{ asset('images/edit.svg') }}"/>{% endif %}
                                     </a>
